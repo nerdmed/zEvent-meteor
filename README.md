@@ -22,3 +22,5 @@ Just include the following lines inside your - smar.json of your meteor project
 
 ```
 
+and run mrt add zEvent in your terminal
+
