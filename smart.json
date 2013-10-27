@@ -3,7 +3,7 @@
   "description": "JavaScript zEvents Library v1.0 by Nicholas C. Zakas",
   "homepage": "https://github.com/nerdmed/zEvent-meteor.git",
   "author": "Ahmed Hassan",
-  "version": "1.0",
+  "version": "1.0.0",
   "git": "https://github.com/nerdmed/zEvent-meteor.git",
   "packages": {
   }
