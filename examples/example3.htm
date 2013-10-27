@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+    <head>
+        <title>Page title</title>
+        <script type="text/javascript" src="../distrib/zevents.js"></script>
+        <script type="text/javascript" src="car.js"></script>
+        <script type="text/javascript">
+           //sample object
+           var oCar = new Car();
+           
+           //assign event handler for "start" event
+           oCar.addEventListener("start", function(oEvent) {
+               alert("Cancelling the start...");
+               oEvent.preventDefault();
+           });
+           
+        </script>
+ 
+ 
+    </head>
+    <body>
+        
+        <script type="text/javascript">
+        
+            //call the start() method
+            oCar.start();
+            
+            //now, what is the value of running?
+            alert("Running: " + oCar.running);
+        
+        </script>
+        <p>This example uses more complex event handlers and the <code>zEvent</code>
+        object. Also, the <code>preventDefault()</code> method is used to prevent the <code>running</code>
+        flag from being set to true.</p>
+    </body>
+</html>

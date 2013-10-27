@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+    <head>
+        <title>Page title</title>
+        <script type="text/javascript" src="../distrib/zevents.js"></script>
+        <script type="text/javascript" src="car.js"></script>
+        <script type="text/javascript">
+           //sample object
+           var oCar = new Car();
+           
+           //assign event handler for "start" event
+           oCar.addEventListener("start", function() {
+               alert("starting");
+           });
+           
+           //assign event handler for "stop" event
+           oCar.addEventListener("stop", function() {
+               alert("stopping");
+           });
+           
+        </script>
+ 
+ 
+    </head>
+    <body>
+        
+        <script type="text/javascript">
+        
+            //call the start() method
+            oCar.start();
+            
+            //check to make sure the car is running
+            alert("Running:" + oCar.running);
+            
+            //call the stop() method
+            oCar.stop();
+        
+        </script>
+        <p>This example uses simple event handlers to alert you when the
+        <code>start()</code> and <code>stop()</code> methods are called.</p>
+
+    </body>
+</html>

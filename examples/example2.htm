@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+    <head>
+        <title>Page title</title>
+        <script type="text/javascript" src="../distrib/zevents.js"></script>
+        <script type="text/javascript" src="car.js"></script>
+        <script type="text/javascript">
+           //sample object
+           var oCar = new Car();
+           
+           //assign event handler for "start" event
+           oCar.addEventListener("start", function(oEvent) {
+               alert("Event name: " + oEvent.type);
+               alert("Event can be cancelled: " + oEvent.cancelable);
+           });
+           
+        </script>
+ 
+ 
+    </head>
+    <body>
+        
+        <script type="text/javascript">
+        
+            //call the start() method
+            oCar.start();
+        
+        </script>
+        <p>This example uses more complex event handlers and the <code>zEvent</code>
+        object.</p>
+    </body>
+</html>
