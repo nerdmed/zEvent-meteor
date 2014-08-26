@@ -11,8 +11,3 @@ Package.onUse(function(api) {
   api.export('zEvent');
   api.export('zEventTarget');
 });
-
-
-Package.on_use(function (api, where) {
-  api.add_files(['distrib/zevents.js'], 'client');
-});
