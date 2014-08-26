@@ -2,25 +2,7 @@ zEvent-meteor
 =============
 
 JavaScript zEvents Library v1.0 by Nicholas C. Zakas - packed as a Meteor package
+for more info take a look at his [homepage](http://www.nczonline.net/blog/2004/12/06/zinherit-1-0-and-zevents-1-1/)
 
-## this is not published to athmosphere because of missing tests!
-
-If you like to port the test - just send a pull request.
-
-# Quick Use
-
-Just include the following lines inside your - smar.json of your meteor project
-
-```
-{
-  "packages": {
-    "zEvent" :{
-            "git":"https://github.com/nerdmed/zEvent-meteor.git"
-    }
-  }
-}
-
-```
-
-and run mrt add zEvent in your terminal
+meteor add nerdmed:zevent
 
