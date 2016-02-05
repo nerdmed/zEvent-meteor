@@ -18,51 +18,51 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
  *------------------------------------------------------------------------------
- */  
+ */
 
 /**
  * Encapsulates information about an event.
  * @scope public
  * @class
  */
-function zEvent() {
+ zEvent = function zEvent() {
 
-    /**
-     * The type of event.
-     * @scope public
-     */
-    this.type /*: String */   = null;
-    
-    /**
-     * The object that caused the event.
-     * @scope public
-     */
-    this.target /*: zEventTarget */ = null;
-    
-    /**
-     * A secondary object related to the event.
-     * @scope public
-     */
-    this.relatedTarget /*: zEventTarget */ = null;
-    
-    /**
-     * Indicates whether or not the event can be canceled.
-     * @scope public
-     */
-    this.cancelable /*: boolean */ = false;
-    
-    /**
-     * The time that the event occurred.
-     * @scope public
-     */
-    this.timeStamp /*: long */ = null;
-    
-    /*
-     * Set to false to cancel event.
-     * @scope public
-     */
-    this.returnValue /*: boolean */ = true;    
-}
+     /**
+      * The type of event.
+      * @scope public
+      */
+     this.type /*: String */   = null;
+
+     /**
+      * The object that caused the event.
+      * @scope public
+      */
+     this.target /*: zEventTarget */ = null;
+
+     /**
+      * A secondary object related to the event.
+      * @scope public
+      */
+     this.relatedTarget /*: zEventTarget */ = null;
+
+     /**
+      * Indicates whether or not the event can be canceled.
+      * @scope public
+      */
+     this.cancelable /*: boolean */ = false;
+
+     /**
+      * The time that the event occurred.
+      * @scope public
+      */
+     this.timeStamp /*: long */ = null;
+
+     /*
+      * Set to false to cancel event.
+      * @scope public
+      */
+     this.returnValue /*: boolean */ = true;
+ }
 
 /**
  * Initializes the event object with information for the event.
@@ -70,7 +70,7 @@ function zEvent() {
  * @param sType The type of event encapsulated by the object.
  * @param bCancelable True if the event can be cancelled.
  */
-zEvent.prototype.initEvent = function (sType /*: String */,
+zEvent.prototype.initEvent = function(sType /*: String */,
                                        bCancelable /*: boolean */) {
     this.type = sType;
     this.cancelable = bCancelable;
@@ -81,7 +81,7 @@ zEvent.prototype.initEvent = function (sType /*: String */,
  * Prevents the default behavior for an event.
  * @scope public
  */
-zEvent.prototype.preventDefault = function () {
+zEvent.prototype.preventDefault = function() {
     if (this.cancelable) {
         this.returnValue = false;
     }
@@ -92,7 +92,7 @@ zEvent.prototype.preventDefault = function () {
  * @class
  * @scope public
  */
-function zEventTarget() {
+zEventTarget = function zEventTarget() {
 
     /**
      * Array of event handlers.
@@ -104,16 +104,16 @@ function zEventTarget() {
 /**
  * Adds an event listener function to handle the type of event.
  * @scope public
- * @param sType The type of event to handle (i.e., "mousemove", not "onmousemove").
+ * @param sType The type of event to handle (i.e., 'mousemove', not 'onmousemove').
  * @param fnListener The listener function for the event.
  */
-zEventTarget.prototype.addEventListener = function (sType /*: String */,
+zEventTarget.prototype.addEventListener = function(sType /*: String */,
                                                     fnListener /*: Function */) {
-    if (typeof this.eventhandlers[sType] == "undefined") {
+    if (typeof this.eventhandlers[sType] == 'undefined') {
         this.eventhandlers[sType] = new Array;
-    }   
-    
-    this.eventhandlers[sType][this.eventhandlers[sType].length] = fnListener;                                                    
+    }
+
+    this.eventhandlers[sType][this.eventhandlers[sType].length] = fnListener;
 };
 
 /**
@@ -122,7 +122,7 @@ zEventTarget.prototype.addEventListener = function (sType /*: String */,
  * @param oEvent The event object containing information about the event to fire.
  * @return True if the event should continue, false if not.
  */
-zEventTarget.prototype.dispatchEvent = function (oEvent /*: zEvent */) /*: boolean */ {
+zEventTarget.prototype.dispatchEvent = function(oEvent /*: zEvent */) /*: boolean */ {
 
     /*
      * Set the target of the event.
@@ -132,9 +132,13 @@ zEventTarget.prototype.dispatchEvent = function (oEvent /*: zEvent */) /*: boole
     /*
      * Call each event handler and pass in the event object.
      */
-    if (typeof this.eventhandlers[oEvent.type] != "undefined") {
-        for (var i=0; i < this.eventhandlers[oEvent.type].length; i++) {    
-            this.eventhandlers[oEvent.type][i](oEvent);
+    if (typeof this.eventhandlers[oEvent.type] != 'undefined') {
+        for (var i = 0; i < this.eventhandlers[oEvent.type].length; i++) {
+            try {
+                this.eventhandlers[oEvent.type][i](oEvent);
+            }catch (e) {
+                if (window.console && console.error) console.error('[zEvents] Error in event listner ' + oEvent.type);
+            }
         }
     }
 
@@ -142,25 +146,26 @@ zEventTarget.prototype.dispatchEvent = function (oEvent /*: zEvent */) /*: boole
      * Return the value of returnValue, which is changed to false
      * when preventDefault() is called.
      */
-    return oEvent.returnValue;                                                   
+
 };
 
 /**
  * Removes an event listener function from handling the type of event.
  * @scope public
- * @param sType The type of event to remove from (i.e., "mousemove", not "onmousemove").
+ * @param sType The type of event to remove from (i.e., 'mousemove', not 'onmousemove').
  * @param fnListener The listener function to remove.
  */
-zEventTarget.prototype.removeEventListener = function (sType /*: String */,
+zEventTarget.prototype.removeEventListener = function(sType /*: String */,
                                                        fnListener /*: Function */) {
-    if (typeof this.eventhandlers[sType] != "undefined") {
+    if (typeof this.eventhandlers[sType] != 'undefined') {
         var arrTemp = new Array;
-        for (var i=0; i < this.eventhandlers[sType].length; i++) {
+        for (var i = 0; i < this.eventhandlers[sType].length; i++) {
             if (this.eventhandlers[sType][i] != fnListener) {
                 arrTemp[arrTemp.length] = this.eventhandlers[sType][i];
             }
         }
+
         this.eventhandlers[sType] = arrTemp;
-    }   
-                                                   
+    }
+
 };
