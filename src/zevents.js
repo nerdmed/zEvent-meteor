@@ -137,7 +137,10 @@ zEventTarget.prototype.dispatchEvent = function(oEvent /*: zEvent */) /*: boolea
             try {
                 this.eventhandlers[oEvent.type][i](oEvent);
             }catch (e) {
-                if (window.console && console.error) console.error('[zEvents] Error in event listner ' + oEvent.type);
+                if (window.console && console.error) {
+                  console.error('[zEvents] Error in event listner ' + oEvent.type);
+                  console.error(e);
+                }
             }
         }
     }
