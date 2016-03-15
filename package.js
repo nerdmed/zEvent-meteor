@@ -1,6 +1,6 @@
 Package.describe({
     summary: 'Custom Events functionality by Nicholas C. Zakas',
-    version: '1.0.1',
+    version: '1.0.2',
     git: 'https://github.com/nerdmed/zEvent-meteor.git',
     name: 'nerdmed:zevent'
 });
